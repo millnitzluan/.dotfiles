@@ -1,0 +1,350 @@
+set $mod Mod4
+
+set $up k
+set $down j
+set $left h
+set $right l
+
+exec --no-startup-id xrandr --output HDMI2 --right-of HDMI1 --auto
+
+set $firstMonitor HDMI1
+set $secondMonitor HDMI2
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws0 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
+
+
+# # Move focused container to workspace
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
+bindsym $mod+Ctrl+0 move container to workspace $ws0
+
+# # Move to workspace with focused container
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
+
+bindsym $mod+d exec --no-startup-id rofi -show drun -font "Iosevka Slab 13"
+
+
+################                          how to exit, logoff, suspend, ...                        #################
+
+#Backup exit
+#Press ctrl+alt+x - check toolbar for next choices
+bindsym control+mod1+X mode "$mode_system"
+
+set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
+mode "$mode_system" {
+    bindsym k exec --no-startup-id ~/.config/i3/scripts/i3exit.sh lock, mode "default"
+    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3exit.sh logout, mode "default"
+    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3exit.sh suspend, mode "default"
+    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3exit.sh hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3exit.sh reboot, mode "default"
+    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+# ArcoLinux Logout
+bindsym $mod+Shift+e exec --no-startup-id arcolinux-logout
+bindsym $mod+X exec --no-startup-id arcolinux-logout
+
+bindsym $mod+Shift+r restart
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+
+bindsym $mod+Shift+q kill
+bindsym $mod+q kill
+
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+# next/previous workspace
+
+bindsym Mod1+Tab workspace next
+bindsym Mod1+Shift+Tab workspace prev
+bindsym $mod+Tab workspace back_and_forth
+
+#navigate workspaces next / previous
+bindsym Mod1+Ctrl+Right workspace next
+bindsym Mod1+Ctrl+Left workspace prev
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# orientation for new workspaces
+default_orientation horizontal
+
+# split in horizontal orientation
+bindsym $mod+\ split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+# Super + F in arcolinux is execute thunar
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+# qwerty/azerty issue for letter z
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+font pango: Iosevka Slab 13
+
+# Autotiling
+exec_always --no-startup-id autotiling
+
+#Authentication dialog
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Updater
+exec --no-startup-id pamac-tray
+
+# network
+exec --no-startup-id nm-applet
+
+# num lock activated
+exec_always --no-startup-id numlockx on
+
+# volume
+#exec --no-startup-id pasystray
+exec --no-startup-id volumeicon
+
+#feh sets wallpaper
+exec --no-startup-id feh --bg-fill /home/l/Pictures/adrian-Xft-JdC-Jbc-unsplash.jpg&
+
+#Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh &
+
+# terminal
+bindsym $mod+Return exec --no-startup-id alacritty;focus
+
+#arcolinux-logout
+bindsym control+mod1+k exec --no-startup-id arcolinux-logout
+bindsym control+mod1+l exec --no-startup-id arcolinux-logout
+
+#pavucontrol
+#arcolinux conflict
+bindsym control+mod1+u exec --no-startup-id pavucontrol
+
+#pamac-manager
+bindsym control+mod1+p exec --no-startup-id pamac-manager
+
+#xkill
+bindsym --release $mod+Escape exec xkill
+
+bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
+bindsym Control+Print exec --no-startup-id xfce4-screenshooter
+bindsym Control+Shift+Print exec --no-startup-id gnome-screenshot -i
+
+#floating enabled from some programs - find with xprop
+for_window [class="Bleachbit"] floating disable
+for_window [class="Blueberry.py"] floating enable
+for_window [class="Brasero"] floating disable
+for_window [class="Galculator"] floating enable
+for_window [class="^Gpick$"] floating enable
+for_window [class="Hexchat"] floating disable
+for_window [class="Imagewriter"] floating enable
+for_window [class="Font-manager"] floating enable
+for_window [class="Nitrogen"] floating disable
+for_window [class="Pavucontrol"] floating disable
+for_window [class="Peek"] floating enable
+for_window [class="^Spotify$"] floating disable
+for_window [class="System-config-printer.py"] floating enable
+for_window [class="Unetbootin.elf"] floating enable
+for_window [class="Usb-creator-gtk"] floating enable
+for_window [class="^Vlc$"] floating disable
+for_window [class="Xfburn"] floating disable
+
+
+#for_window [instance="gimp"] floating disable
+for_window [instance="script-fu"] border normal
+for_window [instance="variety"] floating disable
+
+
+for_window [title="Copying"] floating enable
+for_window [title="Deleting"] floating enable
+for_window [title="Moving"] floating enable
+for_window [title="^Terminator Preferences$"] floating enable
+
+
+#for_window [window_role="^gimp-toolbox-color-dialog$"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="^Preferences$"] floating enable
+for_window [window_role="setup"] floating enable
+
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '5%+'"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '5%-'"
+bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master toggle"
+
+#https://github.com/acrisci/playerctl/
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+
+
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
+
+#new_window pixel 1
+new_window normal
+#new_window none
+
+#new_float pixel 1
+new_float normal
+#new_float none
+
+#Popups during fullscreen mode
+popup_during_fullscreen smart
+
+for_window [class="^.*"] border pixel 0
+gaps inner 25
+gaps outer 15
+#smart_gaps on
+#smart_borders on
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+    # Window color settings
+    # class                 border  backgr. text    indicator
+client.focused          #6790EB #6790EB #e5e5e5 #6790EB
+client.unfocused        #222222 #222222 #aaaaaa #222222
+client.focused_inactive #222222 #222222 #a9a9a9 #222222
+client.placeholder      #222222 #222222 #aaaaaa #222222
+client.urgent           #d42121 #d42121 #f7f7f7 #d42121
+client.background       #242424
