@@ -1,17 +1,19 @@
 # Dependencies
 
-* **terminal:** alacritty git zsh oh-my-zsh
-* **editor:** emacs doom-emacs
-* **wallpaper:** feh
-* **bar:** polybar
-* **fonts:** Iosevka Slab / Inconsolata / TerminessTTF
-* **browser:**: Google Chrome
+* **Terminal:** alacritty git zsh oh-my-zsh
+* **Wm:** i3 / i3-gaps
+* **File Manager:** ranger
+* **Editor:** emacs doom-emacs
+* **Wallpaper:** feh
+* **Status bar:** polybar
+* **Fonts:** Iosevka Slab / Inconsolata / TerminessTTF
+* **Browser:**: Google Chrome
 * **Communication:** Slack / Discord
 
 # Usage
 
 ## Setup
-clone your github repository
+clone github repository
 
 ```sh
 git clone --bare https://github.com/millnitzluan/.dotfiles.git $HOME/.dotfiles
@@ -19,7 +21,7 @@ git clone --bare https://github.com/millnitzluan/.dotfiles.git $HOME/.dotfiles
 
 define the alias in the current shell scope
 ```sh
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+echo "alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
 ```
 
 checkout the actual content from the git repository to your $HOME
