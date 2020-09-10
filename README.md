@@ -1,27 +1,36 @@
-## Getting started
+# Dependencies
 
-If you're starting from scratch, go ahead and…
-create a .dotfiles folder, which we'll use to track your dotfiles
+* **Terminal:** alacritty git zsh oh-my-zsh
+* **Wm:** i3 / i3-gaps
+* **File Manager:** ranger
+* **Editor:** emacs doom-emacs
+* **Wallpaper:** feh
+* **Status bar:** polybar
+* **Fonts:** Iosevka Slab / Inconsolata / TerminessTTF
+* **Browser:**: Google Chrome
+* **Communication:** Slack / Discord
+
+# Usage
+
+## Setup
+clone github repository
+
 ```sh
-git init --bare $HOME/.dotfiles
+git clone --bare https://github.com/millnitzluan/.dotfiles.git $HOME/.dotfiles
 ```
 
-create an alias dotfilesso you don't need to type it all over again
+define the alias in the current shell scope
 ```sh
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+echo "alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
 ```
 
-set git status to hide untracked files
+checkout the actual content from the git repository to your $HOME
+
 ```sh
-dotfiles config --local status.showUntrackedFiles no
+dotfiles checkout
 ```
 
-add the alias to .bashrc (or .zshrc) so you can use it later
-```sh
-echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
-```
-
-## Usage
+## Commands
 
 Now you can use regular git commands such as:
 
@@ -34,26 +43,12 @@ dotfiles commit -m "Add bashrc"
 dotfiles push
 ```
 
-Nice, right? Now if you're moving to a virgin system…
-Setup environment in a new computer
 
-Make sure to have git installed, then:
-clone your github repository
+# Screenshots
 
-```sh
-git clone --bare https://github.com/USERNAME/dotfiles.git $HOME/.dotfiles
-```
+## Desktop
+![Image of desktop](https://i.imgur.com/bH8L9Bf.png)
 
-define the alias in the current shell scope
-```sh
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-```
+## Doom emacs
+![Image of doom emacs](https://i.imgur.com/8fdUqGn.png)
 
-checkout the actual content from the git repository to your $HOME
-
-```sh
-dotfiles checkout
-```
-
-Note that if you already have some of the files you'll get an error message. You can either (1) delete them or (2) back them up somewhere else. It's up to you.
-Awesome! You’re done.
