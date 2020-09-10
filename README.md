@@ -1,3 +1,13 @@
+# Dependencies
+
+* **terminal:** alacritty git zsh oh-my-zsh
+* **editor:** emacs doom-emacs
+* **wallpaper:** feh
+* **bar:** polybar
+* **fonts:** Iosevka Slab / Inconsolata / TerminessTTF
+* **browser:**: Google Chrome
+* **Communication:** Slack / Discord
+
 # Usage
 
 ## Setup
